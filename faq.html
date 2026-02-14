@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - FXM Elite Predict</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.0/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a2332;
+            --secondary: #00ff88;
+            --accent: #0066ff;
+            --dark: #0d1117;
+            --light: #f0f4f8;
+            --text: #e0e6ed;
+            --border: #2d3748;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
+            color: var(--text);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+        }
+
+        header {
+            background: rgba(13, 17, 23, 0.95);
+            border-bottom: 2px solid var(--secondary);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 255, 136, 0.1);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ffffff 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo i {
+            color: var(--secondary);
+        }
+
+        .tagline {
+            font-size: 0.85rem;
+            color: var(--secondary);
+            font-weight: 500;
+            margin-top: 0.25rem;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--secondary);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            color: var(--text);
+        }
+
+        .search-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.75rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: #ffffff;
+            font-size: 1rem;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.2);
+        }
+
+        .search-box input::placeholder {
+            color: var(--text);
+        }
+
+        .faq-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .category-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 1rem;
+            color: var(--text);
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .category-btn:hover, .category-btn.active {
+            background: var(--secondary);
+            color: var(--primary);
+            border-color: var(--secondary);
+        }
+
+        .faq-container {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .faq-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .faq-item:hover {
+            border-color: var(--secondary);
+            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.1);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+        }
+
+        .faq-question:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .faq-question-text {
+            font-weight: 600;
+            color: #ffffff;
+            flex: 1;
+        }
+
+        .faq-toggle {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 0 1.5rem 1.5rem 1.5rem;
+        }
+
+        .faq-answer-text {
+            color: var(--text);
+            line-height: 1.8;
+        }
+
+        .faq-answer-text a {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .faq-answer-text a:hover {
+            color: #ffffff;
+        }
+
+        .faq-category {
+            display: none;
+        }
+
+        .faq-category.active {
+            display: block;
+        }
+
+        .category-title {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        footer {
+            background: rgba(13, 17, 23, 0.95);
+            border-top: 2px solid var(--border);
+            padding: 3rem 2rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: var(--text);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--secondary);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border);
+            padding-top: 2rem;
+            text-align: center;
+            color: var(--text);
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .faq-categories {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div>
+                <div class="logo">
+                    <i class="fas fa-chart-line"></i>
+                    FXM Elite Predict
+                </div>
+                <div class="tagline">Daily community-consensus match predictions</div>
+            </div>
+            <nav id="nav-menu">
+                <a href="index.html">Home</a>
+                <a href="predictions.html">Predictions</a>
+                <a href="results.html">Results</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="faq.html">FAQ</a>
+            </nav>
+            <button class="mobile-menu-btn" id="menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1><i class="fas fa-question-circle"></i> Frequently Asked Questions</h1>
+            <p>Find answers to common questions about FXM Elite Predict and how to use our platform.</p>
+        </div>
+
+        <!-- Search Box -->
+        <div class="search-box">
+            <input type="text" id="search-input" placeholder="Search FAQ...">
+        </div>
+
+        <!-- Category Buttons -->
+        <div class="faq-categories">
+            <button class="category-btn active" onclick="filterCategory('all')">All Questions</button>
+            <button class="category-btn" onclick="filterCategory('general')">General</button>
+            <button class="category-btn" onclick="filterCategory('predictions')">Predictions</button>
+            <button class="category-btn" onclick="filterCategory('betting')">Betting</button>
+            <button class="category-btn" onclick="filterCategory('account')">Account</button>
+            <button class="category-btn" onclick="filterCategory('technical')">Technical</button>
+        </div>
+
+        <!-- General Category -->
+        <div class="faq-category active" id="category-all">
+            <!-- General Questions -->
+            <div class="faq-container">
+                <h2 class="category-title">General Questions</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-question-text">What is FXM Elite Predict?</span>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-text">
+                            FXM Elite Predict is a free sports prediction platform that uses community consensus data from SofaScore to generate accurate match predictions. We analyze millions of user predictions to identify the most reliable outcomes across 12+ sports.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-question-text">Is FXM Elite Predict free?</span>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-text">
+                            Yes! All predictions, results, and analytics are completely free. We believe in transparency and want everyone to have access to quality sports predictions without any cost or hidden fees.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-question-text">How long has FXM Elite Predict been operating?</span>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-text">
+                            FXM Elite Predict was founded in 2026 with a mission to provide accurate, transparent sports predictions. All our historical data and predictions are publicly available for verification on our Results page.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-question-text">What sports do you cover?</span>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-text">
+                            We currently cover 12+ sports including:
+                            <ul style="margin-top: 0.5rem; margin-left: 1.5rem;">
+                                <li>Tennis (ATP, WTA)</li>
+                                <li>Football (Premier League, La Liga, Serie A, Bundesliga, etc.)</li>
+                                <li>Basketball (NBA, EuroLeague)</li>
+                                <li>Ice Hockey (NHL, KHL)</li>
+                                <li>Baseball (MLB)</li>
+                                <li>American Football (NFL)</li>
+                                <li>Rugby</li>
+                                <li>Volleyball</li>
+                                <li>And more...</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Prediction Questions -->
+            <div class="faq-container" style="margin-top: 2rem;">
+                <h2 class="category-title">Predictions</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-question-text">How accurate are your predictions?</span>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-text">
+                            Our current accuracy rate is 73.4% based on tracked predictions over the last 30 days. All predictions and results are publicly available for verification. Accuracy varies by sport, league, and prediction type. We update our accuracy metrics daily.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-question-text">How are predictions generated?</span>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-text">
+                            We use community consensus data from SofaScore, where millions of users predict match outcomes. Our algorithm filters matches where 70%+ of users agree on an outcome. This collective intelligence approach has proven more reliable than individual expert predictions because it reduces bias and incorporates diverse perspectives.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-question-text">How often are predictions updated?</span>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-text">
+                            Predictions are updated daily at 6:00 AM UTC. We analyze the latest community consensus data from SofaScore and provide fresh predictions for upcoming matches. You can check the Predictions page anytime to see the latest available predictions.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-question-text">What prediction types do you offer?</span>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-text">
+                            We offer multiple prediction types including:
+                            <ul style="margin-top: 0.5rem; margin-left: 1.5rem;">
+                                <li><strong>Match Winner (1X2):</strong> Predict which team/player will win</li>
+                                <li><strong>Over/Under:</strong> Predict total goals, points, or games</li>
+                                <li><strong>Both Teams to Score (BTTS):</strong> Predict if both teams will score</li>
+                                <li><strong>Point Spread:</strong> Predict margin of victory</li>
+                                <li><strong>Handicap:</strong> Adjusted odds for competitive balance</li>
+                                <li><strong>Correct Score:</strong> Predict exact final score</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-question-text">What does confidence percentage mean?</span>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-text">
+                            Confidence percentage represents the percentage of SofaScore users who agree on a particular prediction. For example, 82% confidence means 82% of users predict that outcome. Higher confidence generally indicates stronger community consensus and potentially more reliable predictions.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Betting Questions -->
+            <div class="faq-container" style="margin-top: 2rem;">
+                <h2 class="category-title">Betting & Responsible Gambling</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-question-text">Can I use these predictions for betting?</span>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-text">
+                            Yes, our predictions are designed to inform betting decisions. However, remember that sports betting involves risk. Our predictions are for informational purposes and do not guarantee any outcomes. Always conduct your own research and never bet more than you can afford to lose.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-question-text">What is ROI in your predictions?</span>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-text">
+                            ROI (Return on Investment) shows the potential profit percentage if you bet 1 unit on a prediction at the given odds. For example, +12.3% ROI means if you bet 1 unit at odds of 1.85, you could expect a 12.3% return if the prediction wins. This helps you evaluate the value of a bet.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-question-text">Is there a responsible gambling policy?</span>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-text">
+                            Yes, we strongly promote responsible gambling. Never bet more than you can afford to lose. Set limits on your betting activity and take breaks when needed. If you have a gambling problem, please seek help at <a href="https://www.ncpgambling.org/">ncpgambling.org</a> or contact the National Problem Gambling Helpline at 1-800-522-4700.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-question-text">What is your liability for losses?</span>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-text">
+                            FXM Elite Predict is not liable for any losses incurred from using our predictions. Our predictions are provided for informational purposes only. Always conduct your own research and consult with financial advisors before making betting decisions. By using our service, you acknowledge these terms.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Account Questions -->
+            <div class="faq-container" style="margin-top: 2rem;">
+                <h2 class="category-title">Account & Usage</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-question-text">Do I need to create an account?</span>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-text">
+                            No, you don't need to create an account to view predictions. All predictions are publicly available. However, creating an account allows you to save favorite predictions, receive email notifications, and access personalized features.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-question-text">How do I subscribe to the newsletter?</span>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-text">
+                            You can subscribe to our newsletter on the homepage or contact page. Simply enter your email address and click "Subscribe". You'll receive daily predictions and insights delivered to your inbox. You can unsubscribe anytime.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-question-text">Is there a mobile app?</span>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-text">
+                            Our website is fully responsive and works great on mobile devices. You can access all predictions and features from your smartphone or tablet. We're currently developing dedicated iOS and Android apps for an even better mobile experience.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technical Questions -->
+            <div class="faq-container" style="margin-top: 2rem;">
+                <h2 class="category-title">Technical Support</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-question-text">What browsers are supported?</span>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-text">
+                            FXM Elite Predict works on all modern browsers including Chrome, Firefox, Safari, Edge, and Opera. We recommend using the latest version of your browser for the best experience.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-question-text">Is my data secure?</span>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-text">
+                            Yes, we take data security seriously. Our website uses HTTPS encryption to protect your information. We never sell or share your personal data with third parties. Please review our Privacy Policy for more details.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-question-text">How do I report a bug?</span>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-text">
+                            If you encounter a bug or technical issue, please use our Contact page and select "Bug Report" as the subject. Provide as much detail as possible including the page, browser, and steps to reproduce the issue. Our team will investigate and fix it as soon as possible.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-question-text">How can I contact support?</span>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-text">
+                            You can contact us through our Contact page or email us directly at hello@fxmelitepredict.com. We typically respond within 24 hours. For urgent issues, you can also reach us through our social media channels.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>FXM Elite Predict</h3>
+                <p style="color: var(--text);">Daily community-consensus sports predictions powered by advanced analytics.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="predictions.html">Predictions</a></li>
+                    <li><a href="results.html">Results</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 FXM Elite Predict. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const navMenu = document.getElementById('nav-menu');
+        
+        menuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // FAQ Toggle
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            item.querySelector('.faq-question').addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
+
+        // Category Filter
+        function filterCategory(category) {
+            const allCategories = document.querySelectorAll('.faq-category');
+            const allButtons = document.querySelectorAll('.category-btn');
+            
+            allCategories.forEach(cat => cat.classList.remove('active'));
+            allButtons.forEach(btn => btn.classList.remove('active'));
+            
+            if (category === 'all') {
+                document.getElementById('category-all').classList.add('active');
+                document.querySelector('[onclick="filterCategory(\'all\')"]').classList.add('active');
+            } else {
+                document.getElementById('category-' + category).classList.add('active');
+                document.querySelector('[onclick="filterCategory(\'' + category + '\')"]').classList.add('active');
+            }
+        }
+
+        // Search Functionality
+        const searchInput = document.getElementById('search-input');
+        
+        searchInput.addEventListener('keyup', () => {
+            const searchTerm = searchInput.value.toLowerCase();
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question-text').textContent.toLowerCase();
+                const answer = item.querySelector('.faq-answer-text').textContent.toLowerCase();
+                
+                if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
