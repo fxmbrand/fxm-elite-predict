@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Predictions - FXM Elite Predict</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.0/dist/tailwind.min.css" rel="stylesheet">
+    <title>All Predictions - FXM Elite Predict</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
-            --primary: #1a2332;
+            --primary: #0d1117;
             --secondary: #00ff88;
             --accent: #0066ff;
-            --dark: #0d1117;
+            --dark: #010409;
             --light: #f0f4f8;
             --text: #e0e6ed;
             --border: #2d3748;
+            --vip-gold: #ffd700;
         }
 
         * {
@@ -31,13 +31,13 @@
         }
 
         header {
-            background: rgba(13, 17, 23, 0.95);
+            background: rgba(13, 17, 23, 0.98);
             border-bottom: 2px solid var(--secondary);
             backdrop-filter: blur(10px);
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0, 255, 136, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 255, 136, 0.15);
         }
 
         .header-container {
@@ -61,43 +61,6 @@
             gap: 0.5rem;
         }
 
-        .logo i {
-            color: var(--secondary);
-        }
-
-        .tagline {
-            font-size: 0.85rem;
-            color: var(--secondary);
-            font-weight: 500;
-            margin-top: 0.25rem;
-        }
-
-        nav {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        nav a {
-            color: var(--text);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: var(--secondary);
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--secondary);
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
         .container {
             max-width: 1400px;
             margin: 0 auto;
@@ -109,24 +72,20 @@
         }
 
         .page-header h1 {
-            font-size: 2.2rem;
+            font-size: 2.5rem;
+            color: var(--secondary);
             margin-bottom: 0.5rem;
         }
 
-        .page-header p {
-            color: var(--text);
-            font-size: 1.05rem;
-        }
-
         .filters {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1rem;
+            margin-bottom: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid var(--border);
         }
 
         .filter-group {
@@ -136,19 +95,18 @@
 
         .filter-group label {
             font-weight: 600;
-            color: var(--secondary);
             margin-bottom: 0.5rem;
+            color: var(--secondary);
             font-size: 0.9rem;
         }
 
         .filter-group select {
+            padding: 0.75rem;
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--border);
             border-radius: 6px;
-            padding: 0.75rem;
-            color: #ffffff;
+            color: #fff;
             cursor: pointer;
-            transition: border-color 0.3s;
         }
 
         .filter-group select:focus {
@@ -166,86 +124,56 @@
         .prediction-card {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--border);
-            border-radius: 10px;
+            border-radius: 12px;
             padding: 1.5rem;
             transition: all 0.3s;
-            display: flex;
-            flex-direction: column;
+            position: relative;
         }
 
         .prediction-card:hover {
-            transform: translateY(-5px);
             border-color: var(--secondary);
             box-shadow: 0 10px 30px rgba(0, 255, 136, 0.15);
+            transform: translateY(-5px);
         }
 
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 1rem;
-            gap: 1rem;
-        }
-
-        .badges {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 0.4rem 0.8rem;
+        .prediction-card.vip::before {
+            content: 'VIP';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--vip-gold);
+            color: #000;
+            padding: 0.3rem 0.8rem;
             border-radius: 4px;
+            font-weight: 700;
             font-size: 0.8rem;
-            font-weight: 600;
-            width: fit-content;
         }
 
-        .badge-sport {
-            background: rgba(0, 102, 255, 0.2);
-            color: var(--accent);
-        }
-
-        .badge-confidence {
+        .sport-badge {
+            display: inline-block;
             background: rgba(0, 255, 136, 0.2);
             color: var(--secondary);
-        }
-
-        .badge-type {
-            background: rgba(255, 107, 107, 0.2);
-            color: #ff6b6b;
-        }
-
-        .match-time {
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
             font-size: 0.85rem;
-            color: var(--text);
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
         }
 
         .match-info {
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid var(--border);
+            margin-bottom: 1rem;
         }
 
-        .teams-container {
+        .teams {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 0.5rem;
+            font-weight: 600;
         }
 
         .team {
-            font-weight: 600;
-            color: #ffffff;
             flex: 1;
-        }
-
-        .team.away {
-            text-align: right;
         }
 
         .vs {
@@ -254,17 +182,17 @@
             margin: 0 0.5rem;
         }
 
-        .league {
-            font-size: 0.85rem;
+        .match-time {
+            font-size: 0.9rem;
             color: var(--text);
-            margin-top: 0.3rem;
+            margin-bottom: 1rem;
         }
 
         .prediction-details {
-            background: rgba(0, 255, 136, 0.1);
-            border-left: 3px solid var(--secondary);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: 8px;
             padding: 1rem;
-            border-radius: 4px;
             margin-bottom: 1rem;
         }
 
@@ -275,65 +203,92 @@
         }
 
         .prediction-value {
-            font-size: 1.4rem;
-            font-weight: 900;
+            font-size: 1.3rem;
+            font-weight: 700;
             color: var(--secondary);
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.5rem;
         }
 
-        .odds {
-            font-size: 0.85rem;
+        .confidence-bar {
+            background: rgba(255, 255, 255, 0.1);
+            height: 6px;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 0.5rem;
+        }
+
+        .confidence-fill {
+            background: linear-gradient(90deg, var(--secondary) 0%, var(--accent) 100%);
+            height: 100%;
+        }
+
+        .confidence-text {
+            font-size: 0.9rem;
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .pagination button, .pagination a {
+            padding: 0.75rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            color: var(--text);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .pagination button:hover, .pagination a:hover {
+            background: var(--secondary);
+            color: var(--primary);
+            border-color: var(--secondary);
+        }
+
+        .pagination button.active, .pagination a.active {
+            background: var(--secondary);
+            color: var(--primary);
+            border-color: var(--secondary);
+            font-weight: 600;
+        }
+
+        .pagination button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .pagination-info {
+            text-align: center;
+            color: var(--text);
+            margin-top: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 3rem;
             color: var(--text);
         }
 
-        .card-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: auto;
-            padding-top: 1rem;
-            border-top: 1px solid var(--border);
-        }
-
-        .consensus {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.9rem;
-        }
-
-        .consensus-bar {
-            width: 100px;
-            height: 6px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 3px;
-            overflow: hidden;
-        }
-
-        .consensus-fill {
-            height: 100%;
-            background: var(--secondary);
-            border-radius: 3px;
-        }
-
-        .btn-small {
-            padding: 0.5rem 1rem;
-            background: var(--secondary);
-            color: var(--primary);
-            border: none;
-            border-radius: 4px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 0.85rem;
-        }
-
-        .btn-small:hover {
-            transform: translateY(-2px);
+        .no-results i {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            opacity: 0.5;
         }
 
         footer {
-            background: rgba(13, 17, 23, 0.95);
+            background: rgba(13, 17, 23, 0.98);
             border-top: 2px solid var(--border);
             padding: 3rem 2rem;
             margin-top: 3rem;
@@ -353,14 +308,6 @@
             margin-bottom: 1rem;
         }
 
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section ul li {
-            margin-bottom: 0.5rem;
-        }
-
         .footer-section a {
             color: var(--text);
             text-decoration: none;
@@ -371,62 +318,13 @@
             color: var(--secondary);
         }
 
-        .footer-bottom {
-            border-top: 1px solid var(--border);
-            padding-top: 2rem;
-            text-align: center;
-            color: var(--text);
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .pagination {
-            display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .pagination a, .pagination span {
-            padding: 0.5rem 0.75rem;
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            color: var(--text);
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-
-        .pagination a:hover {
-            background: var(--secondary);
-            color: var(--primary);
-            border-color: var(--secondary);
-        }
-
-        .pagination .active {
-            background: var(--secondary);
-            color: var(--primary);
-            border-color: var(--secondary);
-        }
-
         @media (max-width: 768px) {
-            nav {
-                display: none;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-
             .predictions-container {
                 grid-template-columns: 1fr;
             }
 
             .filters {
                 grid-template-columns: 1fr;
-            }
-
-            .page-header h1 {
-                font-size: 1.8rem;
             }
         }
     </style>
@@ -435,314 +333,74 @@
     <!-- Header -->
     <header>
         <div class="header-container">
-            <div>
-                <div class="logo">
-                    <i class="fas fa-chart-line"></i>
-                    FXM Elite Predict
-                </div>
-                <div class="tagline">Daily community-consensus match predictions</div>
+            <div class="logo">
+                <i class="fas fa-chart-line"></i>
+                FXM Elite Predict
             </div>
-            <nav id="nav-menu">
-                <a href="index.html">Home</a>
-                <a href="predictions.html">Predictions</a>
-                <a href="results.html">Results</a>
-                <a href="about.html">About</a>
-                <a href="contact.html">Contact</a>
-                <a href="faq.html">FAQ</a>
+            <nav style="display: flex; gap: 2rem;">
+                <a href="index.html" style="color: var(--text); text-decoration: none;">Home</a>
+                <a href="predictions.html" style="color: var(--secondary); text-decoration: none; font-weight: 600;">Predictions</a>
+                <a href="results.html" style="color: var(--text); text-decoration: none;">Results</a>
+                <a href="about.html" style="color: var(--text); text-decoration: none;">About</a>
             </nav>
-            <button class="mobile-menu-btn" id="menu-btn">
-                <i class="fas fa-bars"></i>
-            </button>
         </div>
     </header>
 
     <!-- Main Content -->
     <main class="container">
-        <!-- Page Header -->
         <div class="page-header">
-            <h1><i class="fas fa-star"></i> All Predictions</h1>
-            <p>Browse all available predictions across multiple sports and leagues. Filter by sport, confidence level, or prediction type.</p>
+            <h1><i class="fas fa-list"></i> All Predictions</h1>
+            <p style="color: var(--text);">Browse all available predictions across Ice Hockey, Tennis, and Basketball</p>
         </div>
 
         <!-- Filters -->
         <div class="filters">
             <div class="filter-group">
+                <label for="tier-filter">Tier</label>
+                <select id="tier-filter" onchange="applyFilters()">
+                    <option value="all">All Tiers</option>
+                    <option value="free">Free (70%+)</option>
+                    <option value="vip">VIP (80-90%+)</option>
+                </select>
+            </div>
+            <div class="filter-group">
                 <label for="sport-filter">Sport</label>
-                <select id="sport-filter">
-                    <option value="">All Sports</option>
+                <select id="sport-filter" onchange="applyFilters()">
+                    <option value="all">All Sports</option>
                     <option value="tennis">Tennis</option>
-                    <option value="football">Football</option>
-                    <option value="basketball">Basketball</option>
                     <option value="hockey">Ice Hockey</option>
+                    <option value="basketball">Basketball</option>
                 </select>
             </div>
             <div class="filter-group">
-                <label for="confidence-filter">Confidence Level</label>
-                <select id="confidence-filter">
-                    <option value="">All Levels</option>
-                    <option value="80">80%+</option>
-                    <option value="75">75%+</option>
+                <label for="confidence-filter">Minimum Confidence</label>
+                <select id="confidence-filter" onchange="applyFilters()">
+                    <option value="0">Any</option>
                     <option value="70">70%+</option>
-                    <option value="0">Below 70%</option>
-                </select>
-            </div>
-            <div class="filter-group">
-                <label for="type-filter">Prediction Type</label>
-                <select id="type-filter">
-                    <option value="">All Types</option>
-                    <option value="winner">Match Winner</option>
-                    <option value="over-under">Over/Under</option>
-                    <option value="btts">Both Teams to Score</option>
-                    <option value="spread">Point Spread</option>
-                </select>
-            </div>
-            <div class="filter-group">
-                <label for="league-filter">League</label>
-                <select id="league-filter">
-                    <option value="">All Leagues</option>
-                    <option value="atp">ATP</option>
-                    <option value="wta">WTA</option>
-                    <option value="premier">Premier League</option>
-                    <option value="la-liga">La Liga</option>
-                    <option value="nba">NBA</option>
+                    <option value="75">75%+</option>
+                    <option value="80">80%+</option>
+                    <option value="85">85%+</option>
                 </select>
             </div>
         </div>
 
         <!-- Predictions Grid -->
-        <div class="predictions-container">
-            <!-- Prediction Card 1 -->
-            <div class="prediction-card" data-sport="tennis" data-confidence="82" data-type="winner" data-league="atp">
-                <div class="card-header">
-                    <div class="badges">
-                        <span class="badge badge-sport"><i class="fas fa-tennis"></i> Tennis - ATP</span>
-                        <span class="badge badge-confidence">82% Confidence</span>
-                        <span class="badge badge-type">Match Winner</span>
-                    </div>
-                </div>
-                <div class="match-time">
-                    <i class="fas fa-calendar"></i> 2026-02-15 14:00 UTC
-                </div>
-                <div class="match-info">
-                    <div class="teams-container">
-                        <span class="team">Jannik Sinner</span>
-                        <span class="vs">vs</span>
-                        <span class="team away">Daniil Medvedev</span>
-                    </div>
-                    <div class="league">ATP Masters 1000 - Dubai</div>
-                </div>
-                <div class="prediction-details">
-                    <div class="prediction-type">Prediction</div>
-                    <div class="prediction-value">Sinner Win</div>
-                    <div class="odds">Odds: 1.85 | ROI: +12.3%</div>
-                </div>
-                <div class="card-footer">
-                    <div class="consensus">
-                        <span>Community:</span>
-                        <div class="consensus-bar">
-                            <div class="consensus-fill" style="width: 82%"></div>
-                        </div>
-                        <span>82%</span>
-                    </div>
-                    <button class="btn-small">Details</button>
-                </div>
-            </div>
+        <div class="predictions-container" id="predictions-container">
+            <!-- Populated by JavaScript -->
+        </div>
 
-            <!-- Prediction Card 2 -->
-            <div class="prediction-card" data-sport="football" data-confidence="78" data-type="over-under" data-league="premier">
-                <div class="card-header">
-                    <div class="badges">
-                        <span class="badge badge-sport"><i class="fas fa-futbol"></i> Football - Premier</span>
-                        <span class="badge badge-confidence">78% Confidence</span>
-                        <span class="badge badge-type">Over/Under</span>
-                    </div>
-                </div>
-                <div class="match-time">
-                    <i class="fas fa-calendar"></i> 2026-02-15 15:30 UTC
-                </div>
-                <div class="match-info">
-                    <div class="teams-container">
-                        <span class="team">Manchester City</span>
-                        <span class="vs">vs</span>
-                        <span class="team away">Liverpool</span>
-                    </div>
-                    <div class="league">Premier League - Matchday 24</div>
-                </div>
-                <div class="prediction-details">
-                    <div class="prediction-type">Prediction</div>
-                    <div class="prediction-value">Over 2.5 Goals</div>
-                    <div class="odds">Odds: 1.72 | ROI: +8.5%</div>
-                </div>
-                <div class="card-footer">
-                    <div class="consensus">
-                        <span>Community:</span>
-                        <div class="consensus-bar">
-                            <div class="consensus-fill" style="width: 78%"></div>
-                        </div>
-                        <span>78%</span>
-                    </div>
-                    <button class="btn-small">Details</button>
-                </div>
-            </div>
-
-            <!-- Prediction Card 3 -->
-            <div class="prediction-card" data-sport="basketball" data-confidence="75" data-type="spread" data-league="nba">
-                <div class="card-header">
-                    <div class="badges">
-                        <span class="badge badge-sport"><i class="fas fa-basketball"></i> Basketball - NBA</span>
-                        <span class="badge badge-confidence">75% Confidence</span>
-                        <span class="badge badge-type">Point Spread</span>
-                    </div>
-                </div>
-                <div class="match-time">
-                    <i class="fas fa-calendar"></i> 2026-02-15 19:00 UTC
-                </div>
-                <div class="match-info">
-                    <div class="teams-container">
-                        <span class="team">Lakers</span>
-                        <span class="vs">vs</span>
-                        <span class="team away">Celtics</span>
-                    </div>
-                    <div class="league">NBA - Regular Season</div>
-                </div>
-                <div class="prediction-details">
-                    <div class="prediction-type">Prediction</div>
-                    <div class="prediction-value">Lakers -3.5</div>
-                    <div class="odds">Odds: 1.90 | ROI: +7.2%</div>
-                </div>
-                <div class="card-footer">
-                    <div class="consensus">
-                        <span>Community:</span>
-                        <div class="consensus-bar">
-                            <div class="consensus-fill" style="width: 75%"></div>
-                        </div>
-                        <span>75%</span>
-                    </div>
-                    <button class="btn-small">Details</button>
-                </div>
-            </div>
-
-            <!-- Prediction Card 4 -->
-            <div class="prediction-card" data-sport="tennis" data-confidence="80" data-type="winner" data-league="wta">
-                <div class="card-header">
-                    <div class="badges">
-                        <span class="badge badge-sport"><i class="fas fa-tennis"></i> Tennis - WTA</span>
-                        <span class="badge badge-confidence">80% Confidence</span>
-                        <span class="badge badge-type">Match Winner</span>
-                    </div>
-                </div>
-                <div class="match-time">
-                    <i class="fas fa-calendar"></i> 2026-02-15 16:00 UTC
-                </div>
-                <div class="match-info">
-                    <div class="teams-container">
-                        <span class="team">Iga Swiatek</span>
-                        <span class="vs">vs</span>
-                        <span class="team away">Aryna Sabalenka</span>
-                    </div>
-                    <div class="league">WTA 1000 - Doha</div>
-                </div>
-                <div class="prediction-details">
-                    <div class="prediction-type">Prediction</div>
-                    <div class="prediction-value">Swiatek Win</div>
-                    <div class="odds">Odds: 1.95 | ROI: +9.8%</div>
-                </div>
-                <div class="card-footer">
-                    <div class="consensus">
-                        <span>Community:</span>
-                        <div class="consensus-bar">
-                            <div class="consensus-fill" style="width: 80%"></div>
-                        </div>
-                        <span>80%</span>
-                    </div>
-                    <button class="btn-small">Details</button>
-                </div>
-            </div>
-
-            <!-- Prediction Card 5 -->
-            <div class="prediction-card" data-sport="football" data-confidence="76" data-type="btts" data-league="la-liga">
-                <div class="card-header">
-                    <div class="badges">
-                        <span class="badge badge-sport"><i class="fas fa-futbol"></i> Football - La Liga</span>
-                        <span class="badge badge-confidence">76% Confidence</span>
-                        <span class="badge badge-type">Both Teams to Score</span>
-                    </div>
-                </div>
-                <div class="match-time">
-                    <i class="fas fa-calendar"></i> 2026-02-15 20:00 UTC
-                </div>
-                <div class="match-info">
-                    <div class="teams-container">
-                        <span class="team">Real Madrid</span>
-                        <span class="vs">vs</span>
-                        <span class="team away">Barcelona</span>
-                    </div>
-                    <div class="league">La Liga - Matchday 24</div>
-                </div>
-                <div class="prediction-details">
-                    <div class="prediction-type">Prediction</div>
-                    <div class="prediction-value">Both Teams Score</div>
-                    <div class="odds">Odds: 1.68 | ROI: +6.4%</div>
-                </div>
-                <div class="card-footer">
-                    <div class="consensus">
-                        <span>Community:</span>
-                        <div class="consensus-bar">
-                            <div class="consensus-fill" style="width: 76%"></div>
-                        </div>
-                        <span>76%</span>
-                    </div>
-                    <button class="btn-small">Details</button>
-                </div>
-            </div>
-
-            <!-- Prediction Card 6 -->
-            <div class="prediction-card" data-sport="hockey" data-confidence="72" data-type="winner" data-league="nhl">
-                <div class="card-header">
-                    <div class="badges">
-                        <span class="badge badge-sport"><i class="fas fa-hockey-puck"></i> Ice Hockey - NHL</span>
-                        <span class="badge badge-confidence">72% Confidence</span>
-                        <span class="badge badge-type">Match Winner</span>
-                    </div>
-                </div>
-                <div class="match-time">
-                    <i class="fas fa-calendar"></i> 2026-02-15 22:00 UTC
-                </div>
-                <div class="match-info">
-                    <div class="teams-container">
-                        <span class="team">Colorado Avalanche</span>
-                        <span class="vs">vs</span>
-                        <span class="team away">Vegas Golden Knights</span>
-                    </div>
-                    <div class="league">NHL - Regular Season</div>
-                </div>
-                <div class="prediction-details">
-                    <div class="prediction-type">Prediction</div>
-                    <div class="prediction-value">Avalanche Win</div>
-                    <div class="odds">Odds: 2.10 | ROI: +5.3%</div>
-                </div>
-                <div class="card-footer">
-                    <div class="consensus">
-                        <span>Community:</span>
-                        <div class="consensus-bar">
-                            <div class="consensus-fill" style="width: 72%"></div>
-                        </div>
-                        <span>72%</span>
-                    </div>
-                    <button class="btn-small">Details</button>
-                </div>
-            </div>
+        <!-- No Results -->
+        <div class="no-results" id="no-results" style="display: none;">
+            <i class="fas fa-search"></i>
+            <h2>No predictions found</h2>
+            <p>Try adjusting your filters</p>
         </div>
 
         <!-- Pagination -->
-        <div class="pagination">
-            <a href="#">&laquo; Previous</a>
-            <span class="active">1</span>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">4</a>
-            <a href="#">Next &raquo;</a>
+        <div class="pagination" id="pagination">
+            <!-- Populated by JavaScript -->
         </div>
+        <div class="pagination-info" id="pagination-info"></div>
     </main>
 
     <!-- Footer -->
@@ -750,70 +408,157 @@
         <div class="footer-content">
             <div class="footer-section">
                 <h3>FXM Elite Predict</h3>
-                <p style="color: var(--text);">Daily community-consensus sports predictions powered by advanced analytics.</p>
+                <p style="color: var(--text);">Accurate sports predictions updated hourly.</p>
             </div>
             <div class="footer-section">
                 <h3>Quick Links</h3>
-                <ul>
+                <ul style="list-style: none;">
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="predictions.html">Predictions</a></li>
                     <li><a href="results.html">Results</a></li>
-                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="about.html">About</a></li>
                 </ul>
             </div>
-            <div class="footer-section">
-                <h3>Resources</h3>
-                <ul>
-                    <li><a href="faq.html">FAQ</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Service</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 FXM Elite Predict. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
-        // Mobile Menu Toggle
-        const menuBtn = document.getElementById('menu-btn');
-        const navMenu = document.getElementById('nav-menu');
-        
-        menuBtn.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-        });
+        // Extended sample data
+        const allPredictions = [
+            // Free Tier (70%+)
+            ...Array.from({length: 25}, (_, i) => ({
+                tier: 'free',
+                sport: ['Tennis', 'Ice Hockey', 'Basketball'][i % 3],
+                league: ['ATP', 'WTA', 'NHL', 'NBA'][i % 4],
+                team1: ['Player A', 'Team A', 'Lakers'][i % 3],
+                team2: ['Player B', 'Team B', 'Warriors'][i % 3],
+                time: new Date(Date.now() + i * 3600000).toLocaleString(),
+                prediction: ['Win', 'Over 5.5', 'Spread -3.5'][i % 3],
+                confidence: 70 + (i % 6),
+                odds: 1.70 + (i % 20) / 100
+            })),
+            // VIP Tier (80-90%+)
+            ...Array.from({length: 15}, (_, i) => ({
+                tier: 'vip',
+                sport: ['Tennis', 'Ice Hockey', 'Basketball'][i % 3],
+                league: ['ATP', 'WTA', 'NHL', 'NBA'][i % 4],
+                team1: ['Champion A', 'Elite Team A', 'Celtics'][i % 3],
+                team2: ['Champion B', 'Elite Team B', 'Heat'][i % 3],
+                time: new Date(Date.now() + i * 3600000).toLocaleString(),
+                prediction: ['Win', 'Over 6.5', 'Spread -5.5'][i % 3],
+                confidence: 80 + (i % 11),
+                odds: 1.65 + (i % 15) / 100
+            }))
+        ];
 
-        // Filter functionality
-        const sportFilter = document.getElementById('sport-filter');
-        const confidenceFilter = document.getElementById('confidence-filter');
-        const typeFilter = document.getElementById('type-filter');
-        const leagueFilter = document.getElementById('league-filter');
-        const cards = document.querySelectorAll('.prediction-card');
+        let currentPage = 1;
+        const itemsPerPage = 12;
+        let filteredPredictions = [...allPredictions];
 
-        function filterCards() {
-            const sport = sportFilter.value.toLowerCase();
-            const confidence = parseInt(confidenceFilter.value) || 0;
-            const type = typeFilter.value.toLowerCase();
-            const league = leagueFilter.value.toLowerCase();
+        function applyFilters() {
+            const tierFilter = document.getElementById('tier-filter').value;
+            const sportFilter = document.getElementById('sport-filter').value;
+            const confidenceFilter = parseInt(document.getElementById('confidence-filter').value);
 
-            cards.forEach(card => {
-                let show = true;
-
-                if (sport && !card.dataset.sport.includes(sport)) show = false;
-                if (confidence && parseInt(card.dataset.confidence) < confidence) show = false;
-                if (type && !card.dataset.type.includes(type)) show = false;
-                if (league && !card.dataset.league.includes(league)) show = false;
-
-                card.style.display = show ? 'flex' : 'none';
+            filteredPredictions = allPredictions.filter(pred => {
+                const tierMatch = tierFilter === 'all' || pred.tier === tierFilter;
+                const sportMatch = sportFilter === 'all' || pred.sport.toLowerCase().includes(sportFilter);
+                const confidenceMatch = pred.confidence >= confidenceFilter;
+                return tierMatch && sportMatch && confidenceMatch;
             });
+
+            currentPage = 1;
+            renderPredictions();
         }
 
-        sportFilter.addEventListener('change', filterCards);
-        confidenceFilter.addEventListener('change', filterCards);
-        typeFilter.addEventListener('change', filterCards);
-        leagueFilter.addEventListener('change', filterCards);
+        function renderPredictions() {
+            const start = (currentPage - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const pagePredictions = filteredPredictions.slice(start, end);
+
+            const container = document.getElementById('predictions-container');
+            const noResults = document.getElementById('no-results');
+
+            if (pagePredictions.length === 0) {
+                container.innerHTML = '';
+                noResults.style.display = 'block';
+            } else {
+                noResults.style.display = 'none';
+                container.innerHTML = pagePredictions.map(p => `
+                    <div class="prediction-card ${p.tier === 'vip' ? 'vip' : ''}">
+                        <span class="sport-badge"><i class="fas fa-${getSportIcon(p.sport)}"></i> ${p.sport}</span>
+                        <div class="match-info">
+                            <div class="teams">
+                                <span class="team">${p.team1}</span>
+                                <span class="vs">vs</span>
+                                <span class="team">${p.team2}</span>
+                            </div>
+                            <div class="match-time"><i class="fas fa-calendar"></i> ${p.time}</div>
+                        </div>
+                        <div class="prediction-details">
+                            <div class="prediction-type">${p.league}</div>
+                            <div class="prediction-value">${p.prediction}</div>
+                            <div class="confidence-bar">
+                                <div class="confidence-fill" style="width: ${p.confidence}%"></div>
+                            </div>
+                            <div class="confidence-text">${p.confidence}% Confidence | Odds: ${p.odds.toFixed(2)}</div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            renderPagination();
+        }
+
+        function renderPagination() {
+            const totalPages = Math.ceil(filteredPredictions.length / itemsPerPage);
+            const pagination = document.getElementById('pagination');
+            const info = document.getElementById('pagination-info');
+
+            let html = '';
+
+            // Previous button
+            html += `<button onclick="goToPage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>
+                <i class="fas fa-chevron-left"></i> Previous
+            </button>`;
+
+            // Page numbers
+            for (let i = 1; i <= totalPages; i++) {
+                if (i === 1 || i === totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) {
+                    html += `<a href="#" onclick="goToPage(${i})" class="page-link ${i === currentPage ? 'active' : ''}">${i}</a>`;
+                } else if (i === 2 || i === totalPages - 1) {
+                    html += '<span>...</span>';
+                }
+            }
+
+            // Next button
+            html += `<button onclick="goToPage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}>
+                Next <i class="fas fa-chevron-right"></i>
+            </button>`;
+
+            pagination.innerHTML = html;
+            info.innerHTML = `Showing ${(currentPage - 1) * itemsPerPage + 1} - ${Math.min(currentPage * itemsPerPage, filteredPredictions.length)} of ${filteredPredictions.length} predictions`;
+        }
+
+        function goToPage(page) {
+            const totalPages = Math.ceil(filteredPredictions.length / itemsPerPage);
+            if (page >= 1 && page <= totalPages) {
+                currentPage = page;
+                renderPredictions();
+                window.scrollTo({top: 0, behavior: 'smooth'});
+            }
+        }
+
+        function getSportIcon(sport) {
+            const icons = {
+                'Tennis': 'tennis',
+                'Ice Hockey': 'hockey-puck',
+                'Basketball': 'basketball'
+            };
+            return icons[sport] || 'chart-line';
+        }
+
+        // Initialize
+        renderPredictions();
     </script>
 </body>
 </html>

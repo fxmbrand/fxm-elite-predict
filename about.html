@@ -4,15 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About - FXM Elite Predict</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.0/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
-            --primary: #1a2332;
+            --primary: #0d1117;
             --secondary: #00ff88;
             --accent: #0066ff;
-            --dark: #0d1117;
-            --light: #f0f4f8;
+            --dark: #010409;
             --text: #e0e6ed;
             --border: #2d3748;
         }
@@ -31,13 +29,11 @@
         }
 
         header {
-            background: rgba(13, 17, 23, 0.95);
+            background: rgba(13, 17, 23, 0.98);
             border-bottom: 2px solid var(--secondary);
-            backdrop-filter: blur(10px);
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0, 255, 136, 0.1);
         }
 
         .header-container {
@@ -56,50 +52,10 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .logo i {
-            color: var(--secondary);
-        }
-
-        .tagline {
-            font-size: 0.85rem;
-            color: var(--secondary);
-            font-weight: 500;
-            margin-top: 0.25rem;
-        }
-
-        nav {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        nav a {
-            color: var(--text);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: var(--secondary);
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--secondary);
-            font-size: 1.5rem;
-            cursor: pointer;
         }
 
         .container {
-            max-width: 1400px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 2rem;
         }
@@ -111,17 +67,17 @@
 
         .page-header h1 {
             font-size: 2.5rem;
+            color: var(--secondary);
             margin-bottom: 1rem;
         }
 
         .page-header p {
             font-size: 1.1rem;
             color: var(--text);
-            max-width: 600px;
-            margin: 0 auto;
         }
 
-        .content-section {
+        /* Content Sections */
+        .section {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--border);
             border-radius: 10px;
@@ -129,13 +85,20 @@
             margin-bottom: 2rem;
         }
 
-        .content-section h2 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
+        .section h2 {
             color: var(--secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .content-section p {
+        .section h2 i {
+            font-size: 1.5rem;
+        }
+
+        .section p {
             margin-bottom: 1rem;
             line-height: 1.8;
         }
@@ -148,142 +111,116 @@
         }
 
         .feature-box {
-            background: rgba(0, 255, 136, 0.05);
-            border: 1px solid rgba(0, 255, 136, 0.2);
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid var(--border);
             border-radius: 8px;
             padding: 1.5rem;
             text-align: center;
         }
 
-        .feature-icon {
+        .feature-box i {
             font-size: 2.5rem;
             color: var(--secondary);
             margin-bottom: 1rem;
         }
 
-        .feature-title {
-            font-weight: 600;
+        .feature-box h3 {
+            color: var(--secondary);
             margin-bottom: 0.5rem;
-            color: #ffffff;
         }
 
-        .feature-description {
+        .feature-box p {
             font-size: 0.95rem;
             color: var(--text);
+            margin: 0;
         }
 
-        .team-grid {
+        .methodology-steps {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
             margin-top: 1.5rem;
         }
 
-        .team-member {
-            background: rgba(0, 255, 136, 0.05);
-            border: 1px solid rgba(0, 255, 136, 0.2);
+        .step {
+            background: rgba(0, 102, 255, 0.1);
+            border: 1px solid var(--border);
             border-radius: 8px;
             padding: 1.5rem;
             text-align: center;
         }
 
-        .member-avatar {
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(135deg, var(--secondary), var(--accent));
-            border-radius: 50%;
-            margin: 0 auto 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-        }
-
-        .member-name {
-            font-weight: 600;
-            font-size: 1.1rem;
-            margin-bottom: 0.3rem;
-            color: #ffffff;
-        }
-
-        .member-role {
-            color: var(--secondary);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        .member-bio {
-            font-size: 0.9rem;
-            color: var(--text);
-        }
-
-        footer {
-            background: rgba(13, 17, 23, 0.95);
-            border-top: 2px solid var(--border);
-            padding: 3rem 2rem;
-            margin-top: 3rem;
-        }
-
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h3 {
-            color: var(--secondary);
-            margin-bottom: 1rem;
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section ul li {
+        .step-number {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--accent);
             margin-bottom: 0.5rem;
         }
 
-        .footer-section a {
-            color: var(--text);
-            text-decoration: none;
-            transition: color 0.3s;
+        .step h4 {
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
         }
 
-        .footer-section a:hover {
+        .step p {
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .stats-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text);
+        }
+
+        .highlight {
+            background: rgba(0, 255, 136, 0.2);
+            padding: 1.5rem;
+            border-left: 4px solid var(--secondary);
+            border-radius: 4px;
+            margin: 1.5rem 0;
+        }
+
+        .highlight strong {
             color: var(--secondary);
         }
 
-        .footer-bottom {
-            border-top: 1px solid var(--border);
-            padding-top: 2rem;
+        footer {
+            background: rgba(13, 17, 23, 0.98);
+            border-top: 2px solid var(--border);
+            padding: 2rem;
+            margin-top: 3rem;
             text-align: center;
-            color: var(--text);
-            max-width: 1400px;
-            margin: 0 auto;
         }
 
         @media (max-width: 768px) {
-            nav {
-                display: none;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-
             .page-header h1 {
                 font-size: 1.8rem;
             }
 
-            .content-section {
-                padding: 1.5rem;
-            }
-
-            .content-section h2 {
-                font-size: 1.4rem;
+            .features-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -292,165 +229,214 @@
     <!-- Header -->
     <header>
         <div class="header-container">
-            <div>
-                <div class="logo">
-                    <i class="fas fa-chart-line"></i>
-                    FXM Elite Predict
-                </div>
-                <div class="tagline">Daily community-consensus match predictions</div>
+            <div class="logo">
+                <i class="fas fa-chart-line"></i>
+                FXM Elite Predict
             </div>
-            <nav id="nav-menu">
-                <a href="index.html">Home</a>
-                <a href="predictions.html">Predictions</a>
-                <a href="results.html">Results</a>
-                <a href="about.html">About</a>
-                <a href="contact.html">Contact</a>
-                <a href="faq.html">FAQ</a>
+            <nav style="display: flex; gap: 2rem;">
+                <a href="index.html" style="color: var(--text); text-decoration: none;">Home</a>
+                <a href="predictions.html" style="color: var(--text); text-decoration: none;">Predictions</a>
+                <a href="results.html" style="color: var(--text); text-decoration: none;">Results</a>
+                <a href="about.html" style="color: var(--secondary); text-decoration: none; font-weight: 600;">About</a>
             </nav>
-            <button class="mobile-menu-btn" id="menu-btn">
-                <i class="fas fa-bars"></i>
-            </button>
         </div>
     </header>
 
     <!-- Main Content -->
     <main class="container">
-        <!-- Page Header -->
         <div class="page-header">
             <h1><i class="fas fa-info-circle"></i> About FXM Elite Predict</h1>
-            <p>Discover how we're revolutionizing sports predictions through community consensus and advanced analytics.</p>
+            <p>Accurate sports predictions powered by community consensus and advanced analytics</p>
         </div>
 
         <!-- Mission Section -->
-        <div class="content-section">
-            <h2>Our Mission</h2>
-            <p>FXM Elite Predict is dedicated to providing accurate, data-driven sports predictions by harnessing the collective wisdom of millions of sports enthusiasts. We believe that community consensus, when properly analyzed and filtered, provides more reliable predictions than individual expert opinions.</p>
-            <p>Our goal is to empower bettors and sports fans with transparent, actionable insights that help them make informed decisions.</p>
+        <div class="section">
+            <h2><i class="fas fa-target"></i> Our Mission</h2>
+            <p>FXM Elite Predict was founded with a simple mission: to provide accurate, transparent, and reliable sports predictions to everyone. We believe that sports prediction should be based on data-driven insights and community wisdom, not individual bias or hunches.</p>
+            <p>Our platform leverages the collective intelligence of millions of SofaScore users to identify the most reliable predictions across Ice Hockey, Tennis, and Basketball. We're committed to transparency, accuracy, and responsible prediction practices.</p>
+            <div class="highlight">
+                <strong>Why We're Different:</strong> We don't use complex algorithms or black-box models. Instead, we use real community consensus data from SofaScore, where millions of users vote on match outcomes. This approach has proven to be more reliable than individual expert predictions.
+            </div>
         </div>
 
-        <!-- How It Works Section -->
-        <div class="content-section">
-            <h2>How It Works</h2>
-            <p>Our prediction system combines cutting-edge technology with the power of community consensus:</p>
+        <!-- How It Works -->
+        <div class="section">
+            <h2><i class="fas fa-cogs"></i> How It Works</h2>
+            <div class="methodology-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h4>Data Collection</h4>
+                    <p>We collect real-time voting data from SofaScore for all upcoming matches</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h4>Consensus Analysis</h4>
+                    <p>We analyze community voting patterns to identify strong consensus</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h4>Tier Filtering</h4>
+                    <p>Free: 70%+ consensus | VIP: 80-90%+ consensus</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h4>Publication</h4>
+                    <p>Predictions are published hourly with confidence scores</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <h4>Result Tracking</h4>
+                    <p>We track all results and update accuracy metrics daily</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">6</div>
+                    <h4>Continuous Improvement</h4>
+                    <p>We refine our methodology based on historical performance</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Why Community Consensus Works -->
+        <div class="section">
+            <h2><i class="fas fa-users"></i> Why Community Consensus Works</h2>
+            <p>The wisdom of crowds is a well-documented phenomenon in decision-making. When millions of people make predictions, their collective judgment tends to be more accurate than any individual expert.</p>
             <div class="features-grid">
                 <div class="feature-box">
-                    <div class="feature-icon"><i class="fas fa-database"></i></div>
-                    <div class="feature-title">Data Collection</div>
-                    <div class="feature-description">We aggregate prediction data from SofaScore's community of millions of users daily.</div>
+                    <i class="fas fa-brain"></i>
+                    <h3>Reduces Bias</h3>
+                    <p>Collective decisions eliminate individual bias and emotional decisions</p>
                 </div>
                 <div class="feature-box">
-                    <div class="feature-icon"><i class="fas fa-filter"></i></div>
-                    <div class="feature-title">Intelligent Filtering</div>
-                    <div class="feature-description">Our algorithms filter predictions to identify matches with 70%+ community consensus.</div>
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Data-Driven</h3>
+                    <p>Based on millions of real predictions from actual users</p>
                 </div>
                 <div class="feature-box">
-                    <div class="feature-icon"><i class="fas fa-chart-bar"></i></div>
-                    <div class="feature-title">Analysis & Ranking</div>
-                    <div class="feature-description">We analyze historical accuracy and rank predictions by confidence level and ROI potential.</div>
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Transparent</h3>
+                    <p>All predictions and results are publicly available for verification</p>
                 </div>
                 <div class="feature-box">
-                    <div class="feature-icon"><i class="fas fa-bell"></i></div>
-                    <div class="feature-title">Real-Time Updates</div>
-                    <div class="feature-description">Predictions are updated daily with the latest community voting data and odds.</div>
-                </div>
-                <div class="feature-box">
-                    <div class="feature-icon"><i class="fas fa-lock"></i></div>
-                    <div class="feature-title">Transparent Tracking</div>
-                    <div class="feature-description">All predictions and results are publicly tracked with full transparency and accuracy metrics.</div>
-                </div>
-                <div class="feature-box">
-                    <div class="feature-icon"><i class="fas fa-graduation-cap"></i></div>
-                    <div class="feature-title">Educational Resources</div>
-                    <div class="feature-description">We provide guides and tips to help users understand betting strategies and risk management.</div>
+                    <i class="fas fa-sync-alt"></i>
+                    <h3>Real-Time</h3>
+                    <p>Updated hourly with the latest community consensus data</p>
                 </div>
             </div>
         </div>
 
-        <!-- Why Choose Us Section -->
-        <div class="content-section">
-            <h2>Why Choose FXM Elite Predict?</h2>
-            <p><strong>Accuracy:</strong> Our 73.4% accuracy rate is backed by transparent tracking of all predictions and results. We don't hide our losses—every prediction is publicly recorded.</p>
-            <p><strong>Community-Powered:</strong> We leverage the wisdom of millions of sports fans, not relying on a single expert's opinion. This diversified approach reduces bias and improves accuracy.</p>
-            <p><strong>Multiple Sports:</strong> We cover 12+ sports including tennis, football, basketball, ice hockey, and more, giving you opportunities across multiple markets.</p>
-            <p><strong>Detailed Analytics:</strong> Our interactive charts and statistics help you understand prediction performance, win rates, and ROI potential.</p>
-            <p><strong>Free & Transparent:</strong> All predictions are free to access. We believe in transparency—you can see our exact track record and methodology.</p>
-        </div>
-
-        <!-- Team Section -->
-        <div class="content-section">
-            <h2>Our Team</h2>
-            <p>FXM Elite Predict is built by a passionate team of data scientists, sports analysts, and software engineers dedicated to improving sports prediction accuracy.</p>
-            <div class="team-grid">
-                <div class="team-member">
-                    <div class="member-avatar"><i class="fas fa-user"></i></div>
-                    <div class="member-name">Alex Johnson</div>
-                    <div class="member-role">Founder & CEO</div>
-                    <div class="member-bio">Data scientist with 10+ years of experience in sports analytics and machine learning.</div>
+        <!-- Our Tiers -->
+        <div class="section">
+            <h2><i class="fas fa-layer-group"></i> Our Prediction Tiers</h2>
+            <p>We offer two tiers of predictions to suit different risk preferences:</p>
+            <div class="stats-showcase">
+                <div class="stat-item">
+                    <div style="color: var(--secondary); font-size: 1.5rem; margin-bottom: 0.5rem;"><i class="fas fa-star"></i> Free Tier</div>
+                    <div class="stat-number">70%+</div>
+                    <div class="stat-label">Community Consensus</div>
+                    <p style="margin-top: 1rem; font-size: 0.85rem;">Predictions where 70% or more of the community agrees</p>
                 </div>
-                <div class="team-member">
-                    <div class="member-avatar"><i class="fas fa-user"></i></div>
-                    <div class="member-name">Sarah Chen</div>
-                    <div class="member-role">Lead Data Analyst</div>
-                    <div class="member-bio">Expert in statistical analysis and prediction modeling with a background in quantitative finance.</div>
-                </div>
-                <div class="team-member">
-                    <div class="member-avatar"><i class="fas fa-user"></i></div>
-                    <div class="member-name">Marcus Williams</div>
-                    <div class="member-role">Head of Technology</div>
-                    <div class="member-bio">Full-stack developer specializing in real-time data processing and web applications.</div>
+                <div class="stat-item">
+                    <div style="color: #ffd700; font-size: 1.5rem; margin-bottom: 0.5rem;"><i class="fas fa-crown"></i> VIP Tier</div>
+                    <div class="stat-number">80-90%+</div>
+                    <div class="stat-label">Strong Consensus</div>
+                    <p style="margin-top: 1rem; font-size: 0.85rem;">Premium predictions with 80-90%+ community agreement</p>
                 </div>
             </div>
         </div>
 
-        <!-- Disclaimer Section -->
-        <div class="content-section" style="background: rgba(255, 193, 7, 0.1); border-color: rgba(255, 193, 7, 0.3);">
-            <h2 style="color: #fbbf24;">Important Disclaimer</h2>
-            <p><strong>Responsible Gambling:</strong> Sports betting involves risk. These predictions are for informational and entertainment purposes only and do not guarantee any outcomes. Never bet more than you can afford to lose.</p>
-            <p><strong>No Liability:</strong> FXM Elite Predict is not liable for any losses incurred from using our predictions. Always conduct your own research and consult with financial advisors before making betting decisions.</p>
-            <p><strong>Terms of Service:</strong> By using our service, you agree to our terms of service and privacy policy. We recommend reading these carefully before proceeding.</p>
-            <p>If you have a gambling problem, please seek help at <a href="https://www.ncpgambling.org/" style="color: var(--secondary);">ncpgambling.org</a>.</p>
+        <!-- Performance -->
+        <div class="section">
+            <h2><i class="fas fa-trophy"></i> Our Performance</h2>
+            <div class="stats-showcase">
+                <div class="stat-item">
+                    <div class="stat-number">73.4%</div>
+                    <div class="stat-label">Overall Accuracy</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">210+</div>
+                    <div class="stat-label">Tracked Predictions</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Sports Covered</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Hourly Updates</div>
+                </div>
+            </div>
+            <div class="highlight" style="margin-top: 1.5rem;">
+                <strong>Note:</strong> All statistics are updated daily and publicly available on our Results page. We believe in complete transparency about our performance.
+            </div>
+        </div>
+
+        <!-- Responsible Gambling -->
+        <div class="section">
+            <h2><i class="fas fa-exclamation-circle"></i> Responsible Gambling</h2>
+            <p>While our predictions are designed to inform betting decisions, we take responsible gambling seriously. Sports betting involves risk, and you should never bet more than you can afford to lose.</p>
+            <div class="features-grid">
+                <div class="feature-box">
+                    <i class="fas fa-hand-paper"></i>
+                    <h3>Set Limits</h3>
+                    <p>Always set betting limits and stick to them</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fas fa-pause-circle"></i>
+                    <h3>Take Breaks</h3>
+                    <p>Take regular breaks from betting activities</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fas fa-search"></i>
+                    <h3>Research</h3>
+                    <p>Always do your own research before betting</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fas fa-phone"></i>
+                    <h3>Get Help</h3>
+                    <p>If you have a gambling problem, seek professional help</p>
+                </div>
+            </div>
+            <div class="highlight" style="margin-top: 1.5rem;">
+                <strong>Resources:</strong> If you or someone you know has a gambling problem, please contact the National Council on Problem Gambling at 1-800-522-4700 or visit <a href="https://www.ncpgambling.org/" style="color: var(--secondary);">ncpgambling.org</a>
+            </div>
+        </div>
+
+        <!-- Sports Covered -->
+        <div class="section">
+            <h2><i class="fas fa-sports"></i> Sports We Cover</h2>
+            <div class="features-grid">
+                <div class="feature-box">
+                    <i class="fas fa-tennis"></i>
+                    <h3>Tennis</h3>
+                    <p>ATP, WTA, Grand Slams, and all major tournaments</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fas fa-hockey-puck"></i>
+                    <h3>Ice Hockey</h3>
+                    <p>NHL, KHL, and international competitions</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fas fa-basketball"></i>
+                    <h3>Basketball</h3>
+                    <p>NBA, EuroLeague, and international leagues</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact -->
+        <div class="section">
+            <h2><i class="fas fa-envelope"></i> Get In Touch</h2>
+            <p>Have questions or feedback? We'd love to hear from you!</p>
+            <p>
+                <strong>Email:</strong> <a href="mailto:hello@fxmelitepredict.com" style="color: var(--secondary);">hello@fxmelitepredict.com</a><br>
+                <strong>Support:</strong> Available 24/7 via <a href="contact.html" style="color: var(--secondary);">contact form</a>
+            </p>
         </div>
     </main>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>FXM Elite Predict</h3>
-                <p style="color: var(--text);">Daily community-consensus sports predictions powered by advanced analytics.</p>
-            </div>
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="predictions.html">Predictions</a></li>
-                    <li><a href="results.html">Results</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Resources</h3>
-                <ul>
-                    <li><a href="faq.html">FAQ</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Service</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 FXM Elite Predict. All rights reserved.</p>
-        </div>
+        <p>&copy; 2026 FXM Elite Predict. All rights reserved.</p>
     </footer>
-
-    <script>
-        // Mobile Menu Toggle
-        const menuBtn = document.getElementById('menu-btn');
-        const navMenu = document.getElementById('nav-menu');
-        
-        menuBtn.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-        });
-    </script>
 </body>
 </html>
